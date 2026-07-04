@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LintasKota - User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "on-tertiary-fixed": "#001b3f",
+                    "secondary-fixed": "#d9e2ff",
+                    "secondary": "#285ab9",
+                    "on-secondary-container": "#003179",
+                    "surface-container-highest": "#e1e2e4",
+                    "secondary-container": "#709bfe",
+                    "on-surface-variant": "#434654",
+                    "surface-bright": "#f8f9fb",
+                    "secondary-fixed-dim": "#b1c6ff",
+                    "surface-dim": "#d9dadc",
+                    "surface-tint": "#0c56d0",
+                    "surface-container": "#edeef0",
+                    "tertiary": "#00418a",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "inverse-on-surface": "#f0f1f3",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "primary": "#003d9b",
+                    "on-primary-fixed": "#001848",
+                    "on-secondary-fixed": "#001946",
+                    "outline-variant": "#c3c6d6",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#c4d2ff",
+                    "surface-container-low": "#f3f4f6",
+                    "on-surface-variant": "#434654",
+                    "inverse-surface": "#2e3132",
+                    "inverse-primary": "#b2c5ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#d7e2ff",
+                    "surface-container-high": "#e7e8ea",
+                    "background": "#f8f9fb",
+                    "on-background": "#191c1e",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#0052cc",
+                    "on-secondary-fixed-variant": "#00419d",
+                    "outline": "#737685",
+                    "on-surface": "#191c1e",
+                    "surface-variant": "#e1e2e4",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface": "#f8f9fb",
+                    "primary-fixed": "#dae2ff",
+                    "tertiary-container": "#0058b6",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-tablet": "24px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fb; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple:after {
+            content: "";
+            background: rgba(0, 61, 155, 0.1);
+            display: block;
+            position: absolute;
+            border-radius: 50%;
+            padding-top: 240%;
+            padding-left: 240%;
+            margin-top: -120%;
+            margin-left: -120%;
+            opacity: 0;
+            transition: all 0.8s;
+        }
+        .ripple:active:after {
+            padding-top: 0;
+            padding-left: 0;
+            margin-top: 0;
+            margin-left: 0;
+            opacity: 1;
+            transition: 0s;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar Execution -->
+<header class="bg-surface dark:bg-on-background flex justify-between items-center px-margin-mobile h-14 w-full z-50 fixed top-0 left-0">
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-secondary-fixed">LintasKota</span>
+</div>
+<div class="flex items-center">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-14 pb-24 overflow-y-auto">
+<!-- Profile Header Section -->
+<section class="px-margin-mobile py-lg bg-surface-container-low mb-base">
+<div class="flex flex-col items-center">
+<div class="relative mb-md">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-highest shadow-sm">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a smiling man in his early 30s with short dark hair, wearing a clean blue oxford shirt. The background is a soft-focus urban environment at dusk, with warm city lights beginning to glow. The photography style is modern and clean, utilizing a shallow depth of field to emphasize the user's friendly and reliable expression, consistent with a corporate travel application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgeXmRzkX1jOYLlpvt3BFha6s2MAaLmK1Q0iAevBcgN3M0qnxtwkwApu0CwCiyS-gSjS2H7WKCPYka-uOneArwmknH8FWDECaZY05sqXuRSUfg8AIYWbr3RTdrVpXLh-oK6qJhUw3XbJOtNvdAF2IrQxQ-q-RVyw8AT1cgi_B5XBs67LnzXswxQsFyIdTDu6piI1AdXObey131hwQI2AGqoePeoiPdQ6N_41RhtmhNK_zeA4lci1yCLfSCFOMLJOuXLEWdEVdcsKU4"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-1.5 rounded-full shadow-lg border-2 border-surface active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Ahmad Sulistyo</h1>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md">Premium Member</span>
+</div>
+</section>
+<!-- Stats Cards (Bento-lite) -->
+<section class="px-margin-mobile grid grid-cols-2 gap-sm mb-lg">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant flex flex-col">
+<span class="text-primary material-symbols-outlined mb-xs">route</span>
+<span class="font-headline-sm text-headline-sm">24</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Total Trips</span>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant flex flex-col">
+<span class="text-primary material-symbols-outlined mb-xs">wallet</span>
+<span class="font-headline-sm text-headline-sm">Rp 1.2M</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Points Saved</span>
+</div>
+</section>
+<!-- Menu List Section -->
+<section class="px-margin-mobile">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<!-- Booking History -->
+<button class="w-full flex items-center justify-between p-md border-b border-outline-variant hover:bg-surface-container-low transition-colors active:bg-surface-container-high group ripple">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Booking History</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Favorite Routes -->
+<button class="w-full flex items-center justify-between p-md border-b border-outline-variant hover:bg-surface-container-low transition-colors active:bg-surface-container-high group ripple">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Favorite Routes</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Payment Methods -->
+<button class="w-full flex items-center justify-between p-md border-b border-outline-variant hover:bg-surface-container-low transition-colors active:bg-surface-container-high group ripple">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Help & Support -->
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:bg-surface-container-high group ripple">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">help</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Help &amp; Support</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Log Out Section -->
+<section class="px-margin-mobile mt-lg">
+<button class="w-full py-4 bg-surface-container-lowest border border-error/30 rounded-xl flex items-center justify-center gap-sm text-error font-title-lg text-title-lg hover:bg-error-container transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </button>
+<p class="text-center mt-md font-label-md text-label-md text-outline">App Version 2.4.12 • LintasKota Core</p>
+</section>
+</main>
+<!-- BottomNavBar Execution -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-2 bg-surface-container dark:bg-on-background h-20 shadow-md">
+<!-- Home Item -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-surface-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<!-- My Trips Item -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-surface-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined mb-1">directions_bus</span>
+<span class="font-label-md text-label-md">My Trips</span>
+</a>
+<!-- Profile Item (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-5 py-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for list items
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('mousedown', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                let ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.width = '2px';
+                ripple.style.height = '2px';
+                ripple.style.background = 'rgba(0, 61, 155, 0.1)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(1)';
+                ripple.style.transition = 'transform 0.6s linear, opacity 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.transform = 'scale(500)';
+                    ripple.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 700);
+            });
+        });
+    </script>
+</body></html>

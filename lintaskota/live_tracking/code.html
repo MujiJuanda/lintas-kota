@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .map-container {
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+    /* Simple animation for the vehicle pulse */
+    @keyframes pulse-ring {
+      0% { transform: scale(.33); opacity: 0.8; }
+      80%, 100% { transform: scale(1.5); opacity: 0; }
+    }
+    .pulse-animation::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #285ab9;
+      animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    }
+    .route-path {
+      stroke-dasharray: 10;
+      animation: dash 20s linear infinite;
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: -200; }
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed-variant": "#0040a2",
+            "on-tertiary-fixed": "#001b3f",
+            "secondary-fixed": "#d9e2ff",
+            "secondary": "#285ab9",
+            "on-secondary-container": "#003179",
+            "surface-container-highest": "#e1e2e4",
+            "secondary-container": "#709bfe",
+            "on-surface-variant": "#434654",
+            "surface-bright": "#f8f9fb",
+            "secondary-fixed-dim": "#b1c6ff",
+            "surface-dim": "#d9dadc",
+            "surface-tint": "#0c56d0",
+            "surface-container": "#edeef0",
+            "tertiary": "#00418a",
+            "on-tertiary-fixed-variant": "#004590",
+            "inverse-on-surface": "#f0f1f3",
+            "primary-fixed-dim": "#b2c5ff",
+            "primary": "#003d9b",
+            "on-primary-fixed": "#001848",
+            "on-secondary-fixed": "#001946",
+            "outline-variant": "#c3c6d6",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#c4d2ff",
+            "surface-container-low": "#f3f4f6",
+            "on-tertiary-container": "#bfd3ff",
+            "inverse-surface": "#2e3132",
+            "inverse-primary": "#b2c5ff",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#d7e2ff",
+            "surface-container-high": "#e7e8ea",
+            "background": "#f8f9fb",
+            "on-background": "#191c1e",
+            "on-secondary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#0052cc",
+            "on-secondary-fixed-variant": "#00419d",
+            "outline": "#737685",
+            "on-surface": "#191c1e",
+            "surface-variant": "#e1e2e4",
+            "tertiary-fixed-dim": "#abc7ff",
+            "surface": "#f8f9fb",
+            "primary-fixed": "#dae2ff",
+            "tertiary-container": "#0058b6",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-tablet": "24px",
+            "gutter": "16px",
+            "xl": "32px",
+            "md": "16px",
+            "sm": "8px",
+            "base": "4px",
+            "xs": "4px",
+            "margin-mobile": "16px",
+            "lg": "24px"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "title-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "body-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+            "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+            "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-background overflow-hidden h-screen flex flex-col">
+<!-- Top AppBar: Suppression logic applied (Transactional flow), but header shown for context -->
+<header class="flex justify-between items-center px-margin-mobile h-14 w-full z-50 fixed top-0 bg-transparent">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="px-4 py-2 bg-surface rounded-full shadow-md">
+<span class="font-label-lg text-label-lg text-primary">Trip ID: LK-8821</span>
+</div>
+<div class="w-10"></div>
+</header>
+<!-- Main Canvas: Interactive Transit Map -->
+<main class="flex-grow relative bg-surface-container">
+<!-- Map Background Image -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale-[0.2] brightness-[0.95]" data-alt="A high-angle, professional transit map view of a modern metropolitan city with clean grey streets and soft teal water bodies. A distinct blue primary route line is highlighted across the grid, representing a travel path. The lighting is bright and clear, emphasizing efficiency and urban planning in a minimalist Corporate Modern style." data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNnxR8y9ut-rIY9Qa0Z7PtkAEVIuqY8EPoRkzVX7rFL5jI4GKAEWeLqF-4RKx2dveiNc8FHzGNK-voI2YVaI-Ooo_5QPCWt3Z3uVweBzIvSr8i-X6mZcZsmJ_SeVV3DxR7gBg5YmthH1Q9YBfavNqNscxAqtQR00N0U4fDi1eG__EsWTomv2y0iJEZgv5jPrYhCY3mRCzn2tX8wbW7mosjZmVI2H78Cdtd3SIZm7kM4KQrzdxvF1khcI9MjuVxPWX5R21XJWt8YadE"/>
+<!-- Overlaying Route Vector (Simulated) -->
+<svg class="absolute inset-0 w-full h-full z-10 pointer-events-none" viewbox="0 0 400 800" xmlns="http://www.w3.org/2000/svg">
+<path class="route-path" d="M100,600 Q150,550 200,500 T300,400" fill="none" opacity="0.8" stroke="#003d9b" stroke-linecap="round" stroke-width="6"></path>
+<!-- Destination Pin -->
+<circle cx="300" cy="400" fill="#ba1a1a" r="8"></circle>
+<circle cx="300" cy="400" fill="#ba1a1a" fill-opacity="0.2" r="16"></circle>
+</svg>
+</div>
+<!-- Live Vehicle Indicator -->
+<div class="absolute top-[520px] left-[165px] z-20 flex flex-col items-center">
+<div class="relative w-12 h-12 flex items-center justify-center pulse-animation">
+<div class="z-30 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-primary text-[20px]">directions_bus</span>
+</div>
+</div>
+<div class="mt-2 bg-primary px-3 py-1 rounded-lg shadow-md">
+<p class="font-label-md text-label-md text-on-primary whitespace-nowrap">LintasKota X-1</p>
+</div>
+</div>
+</main>
+<!-- Bottom Sheet Overlay -->
+<section class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest rounded-t-[28px] shadow-[0_-4px_24px_rgba(0,0,0,0.08)] px-margin-mobile pb-10 pt-4 flex flex-col gap-md">
+<!-- Drag Handle -->
+<div class="w-12 h-1 bg-outline-variant rounded-full mx-auto mb-2"></div>
+<!-- Status & Eta -->
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-lg text-label-lg text-secondary uppercase tracking-wider">On the way to pickup</p>
+<h1 class="font-headline-md text-headline-md text-on-surface mt-1">Estimated Arrival: 5 mins</h1>
+</div>
+<div class="text-right">
+<div class="inline-flex items-center gap-1 bg-secondary-container px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-label-md text-label-md text-on-secondary-container">Live</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 rounded-full transition-all duration-1000 ease-in-out"></div>
+</div>
+<!-- Driver Info Card -->
+<div class="bg-surface-container-low rounded-xl p-md flex items-center gap-md">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a friendly male driver in his 40s wearing a clean corporate transit uniform. He has a warm, trustworthy smile. The background is softly blurred urban daylight, consistent with a high-end service aesthetic. Lighting is bright and natural." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2jSseIWeEmykSIPsJQmoA9Uvs7cBvDKZLhT1CkQOx0QCh8QdnHQHcvFX_f8_ud-Df2kEb43KSIbQLsv0XjFNaoHDB9d_dPnsxpBW6ALEjPTgfz6PDws-z80qTSBHPiAbWkzvbQKNYiK_RPyADry-5v2QWm6G4PpbcHexfs-PB6setY-Jbx0V3RKACAaSl3pvLmpJEDgi6wQv5VU8LuqDFbYF1ajnj57kNK2kUO6agMu86M7YbhhgVF6HvP9Mm-KT_m_OcNVCLV28k"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<h2 class="font-title-lg text-title-lg text-on-surface">Budi Santoso</h2>
+<div class="flex items-center gap-0.5">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-lg text-label-lg font-bold">4.9</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Toyota Hiace • <span class="font-bold text-on-surface">B 1234 LKT</span></p>
+</div>
+</div>
+<!-- Actions -->
+<div class="grid grid-cols-2 gap-md mt-sm">
+<button class="flex items-center justify-center gap-sm h-14 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined">call</span>
+        Call Driver
+      </button>
+<button class="flex items-center justify-center gap-sm h-14 rounded-xl border border-outline text-on-surface-variant font-label-lg text-label-lg active:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">close</span>
+        Cancel
+      </button>
+</div>
+<!-- Safety Banner -->
+<div class="flex items-center justify-center gap-sm mt-sm py-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md text-on-surface-variant">LintasKota Safety Protocol Active</span>
+</div>
+</section>
+<!-- Interaction Scripts -->
+<script>
+    // Simulate slight movement of the bus icon for "live" feel
+    const bus = document.querySelector('.pulse-animation');
+    let posX = 165;
+    let posY = 520;
+    
+    setInterval(() => {
+      posX += (Math.random() - 0.5) * 0.5;
+      posY -= (Math.random() * 0.2); // Slowly move upwards towards destination
+      bus.parentElement.style.left = `${posX}px`;
+      bus.parentElement.style.top = `${posY}px`;
+    }, 2000);
+
+    // Ripple effect for buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        let x = e.clientX - e.target.offsetLeft;
+        let y = e.clientY - e.target.offsetTop;
+        let ripple = document.createElement('span');
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  </script>
+</body></html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LintasKota - Travel Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "on-tertiary-fixed": "#001b3f",
+                    "secondary-fixed": "#d9e2ff",
+                    "secondary": "#285ab9",
+                    "on-secondary-container": "#003179",
+                    "surface-container-highest": "#e1e2e4",
+                    "secondary-container": "#709bfe",
+                    "on-surface-variant": "#434654",
+                    "surface-bright": "#f8f9fb",
+                    "secondary-fixed-dim": "#b1c6ff",
+                    "surface-dim": "#d9dadc",
+                    "surface-tint": "#0c56d0",
+                    "surface-container": "#edeef0",
+                    "tertiary": "#00418a",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "inverse-on-surface": "#f0f1f3",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "primary": "#003d9b",
+                    "on-primary-fixed": "#001848",
+                    "on-secondary-fixed": "#001946",
+                    "outline-variant": "#c3c6d6",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#c4d2ff",
+                    "surface-container-low": "#f3f4f6",
+                    "on-surface-variant": "#434654",
+                    "inverse-surface": "#2e3132",
+                    "inverse-primary": "#b2c5ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#d7e2ff",
+                    "surface-container-high": "#e7e8ea",
+                    "background": "#f8f9fb",
+                    "on-background": "#191c1e",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#0052cc",
+                    "on-secondary-fixed-variant": "#00419d",
+                    "outline": "#737685",
+                    "on-surface": "#191c1e",
+                    "surface-variant": "#e1e2e4",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface": "#f8f9fb",
+                    "primary-fixed": "#dae2ff",
+                    "tertiary-container": "#0058b6",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "12px",
+                    "2xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-tablet": "24px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-header { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.85); }
+        .travel-card { box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05); }
+        .sticky-btn-shadow { box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.05); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top AppBar (from Shared Components JSON - Logic for Sub-page: Suppressed Nav, but UI mapping applied) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-14 bg-surface dark:bg-on-background">
+<div class="flex items-center gap-4">
+<button class="Active: scale-95 transition-transform duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Trip Details</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="Active: scale-95 transition-transform duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="Active: scale-95 transition-transform duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="mt-14 max-w-2xl mx-auto">
+<!-- Large Header Area: Route -->
+<section class="relative h-48 bg-primary overflow-hidden">
+<div class="absolute inset-0 opacity-20">
+<div class="w-full h-full" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+<div class="relative z-10 p-margin-mobile flex flex-col justify-end h-full">
+<div class="flex justify-between items-end">
+<div class="flex-1">
+<p class="font-label-md text-label-md text-primary-fixed-dim opacity-80 mb-1">ORIGIN</p>
+<h2 class="font-headline-md text-headline-md text-on-primary font-bold">Jakarta</h2>
+<p class="font-body-md text-body-md text-on-primary-container">Lebak Bulus Terminal</p>
+</div>
+<div class="flex flex-col items-center px-4">
+<span class="material-symbols-outlined text-on-primary text-3xl mb-1">trending_flat</span>
+</div>
+<div class="flex-1 text-right">
+<p class="font-label-md text-label-md text-primary-fixed-dim opacity-80 mb-1">DESTINATION</p>
+<h2 class="font-headline-md text-headline-md text-on-primary font-bold">Bandung</h2>
+<p class="font-body-md text-body-md text-on-primary-container">Dipati Ukur Area</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Journey Summary & Seats -->
+<section class="px-margin-mobile -mt-6 relative z-20">
+<div class="bg-surface-container-lowest rounded-2xl travel-card p-md flex items-center justify-between border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="bg-secondary-container text-on-secondary-container p-2 rounded-xl">
+<span class="material-symbols-outlined">event</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Departure Date</p>
+<p class="font-title-lg text-title-lg text-on-surface">Wed, 25 Oct 2023</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-sm">airline_seat_recline_normal</span>
+                        4 Seats Left
+                    </span>
+</div>
+</div>
+</section>
+<!-- Timeline View -->
+<section class="p-margin-mobile mt-4">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-4">Itinerary</h3>
+<div class="relative pl-8 space-y-8">
+<!-- Timeline Line -->
+<div class="absolute left-3 top-2 bottom-2 w-0.5 bg-outline-variant"></div>
+<!-- Departure -->
+<div class="relative">
+<div class="absolute -left-8 top-1.5 w-6 h-6 rounded-full bg-primary flex items-center justify-center border-4 border-background z-10">
+<div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+</div>
+<div class="flex justify-between">
+<div>
+<p class="font-title-lg text-title-lg text-on-surface">08:00 AM</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Scheduled Departure</p>
+</div>
+<div class="text-right">
+<p class="font-label-lg text-label-lg text-on-surface">Gate 4B</p>
+</div>
+</div>
+</div>
+<!-- Arrival -->
+<div class="relative">
+<div class="absolute -left-8 top-1.5 w-6 h-6 rounded-full bg-outline-variant flex items-center justify-center border-4 border-background z-10">
+<div class="w-1.5 h-1.5 bg-surface-variant rounded-full"></div>
+</div>
+<div class="flex justify-between">
+<div>
+<p class="font-title-lg text-title-lg text-on-surface">11:30 AM</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Estimated Arrival</p>
+</div>
+<div class="text-right">
+<p class="font-label-lg text-label-lg text-secondary">~ 3h 30m trip</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Vehicle Info Card -->
+<section class="p-margin-mobile space-y-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">Vehicle Information</h3>
+<div class="bg-surface-container-lowest rounded-2xl travel-card p-md border border-outline-variant/20">
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-xl bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A premium high-roof silver passenger van designed for intercity travel, parked in a modern minimalist garage with soft cinematic lighting. The vehicle features sleek modern lines and tinted windows, embodying the reliability and corporate efficiency of LintasKota travel services." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfsoYx-infH1KjOKNtlVKQ_lK-ekvAdGSHs80_6DZbbxwiyzwuZSLQ6LaIQchM7DJAYyqtC3GG41pHBSlmRKBSmqYcYsw411JVSKPEXx2wKAhsmO5-F1o_JuVTXeQGdVv0b2FIGo1mWe33I_pQysIyY7eOYoXsQQKFhe1hj_ceuVuG00nawt0dnklFJCLSwoTR5ot8tOkPHuOHlvdkB03KqFYn_--MIOnrVLo_blr8H5sULWTTZBXoDnSCMjZmeiBLJCPNuOkV7owj"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Toyota HiAce Premio</h4>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-xs font-bold text-on-surface-variant tracking-wider">B 1234 LKT</span>
+</div>
+</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1">ac_unit</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Full AC</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1">wifi</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Free Wi-Fi</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1">bolt</span>
+<span class="font-label-md text-label-md text-on-surface-variant">USB Port</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Driver Info Card -->
+<section class="px-margin-mobile pb-8">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-4">Driver</h3>
+<div class="bg-surface-container-lowest rounded-2xl travel-card p-md border border-outline-variant/20">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<img class="w-14 h-14 rounded-full object-cover border-2 border-primary-container" data-alt="A professional male driver in a clean corporate uniform, smiling warmly in a portrait shot. The background is softly blurred with hints of a modern travel hub. The lighting is bright and inviting, reflecting a sense of trust, safety, and high-quality service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAtx3AcXLSLrjRroORiIPL5URLKpvGBaNnPaf_8Dx-hps_UMxj1p34uajznRF4kIOWu1Z8t5GmDCge6sOeQLun_dGonHKizCbBwtmPyhp_1jkxuB9POXraj4abcRQu36c1IKdbjIkCHJixsUaFettm8qc1z8t53NrkQpd6lTnZuxhVuxQ-i9YAjosqguddh-dX7VX2rPmbAb-Q5YUs6VCQ2IC7xsSrqgd9ZHlyC1sdb59WNjuGETvB4U90OYoYtVlLuM9rpnKNRo6j"/>
+<div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Bambang Susanto</h4>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-amber-500 text-[18px]" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">4.9 (120+ trips)</span>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-2 bg-primary-container text-on-primary-container px-4 py-2 rounded-full font-label-lg text-label-lg Active: scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+                        Contact
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Primary Action -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest sticky-btn-shadow px-margin-mobile py-4 z-50 flex items-center gap-4 max-w-2xl mx-auto md:left-1/2 md:-translate-x-1/2">
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface-variant">Total Price</p>
+<p class="font-headline-sm text-headline-sm text-primary">Rp 120.000<span class="text-xs font-normal text-on-surface-variant ml-1">/seat</span></p>
+</div>
+<button class="bg-primary text-on-primary h-14 px-8 rounded-2xl flex items-center justify-center gap-2 font-title-lg text-title-lg shadow-lg Active: scale-95 transition-transform duration-150">
+            Book Seat
+            <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>
